@@ -22,9 +22,26 @@ def extract_news_date():
         logging.error(f"Error in extracting news: {e}")
         return None
 
+def clean_author_column(text):
+    try:
+        return text.split(',')[0].title()
+    except AttributeError:
+        return None
+
 articles = extract_news_date()
 
 if articles:
-    print(articles[:5])
+    #print(articles[:5])
+    for article in articles:
+        print(article)
+        authors = clean_author_column(articles)
+
+        if authors:
+            print(authors)
+        else:
+            print("No authors found")
 else:
     print("No articles found")
+
+
+    
